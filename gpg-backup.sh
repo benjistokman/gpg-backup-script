@@ -14,7 +14,7 @@ bdir="$1"
 cdir="$6"
 sdir="$3"
 
-7z a "$cdir/$2.7z" -mhe=on -m0=lzma2 "$bdir"
+7z a "$cdir/$2.7z" -m0=lzma2 "$bdir"
 
 gpg -v -o "$sdir/$2.7z.gpg" --cipher-algo AES256 --sign-with "$5" -r "$4" --sign --encrypt "$cdir/$2.7z"
 
