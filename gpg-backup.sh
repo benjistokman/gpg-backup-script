@@ -10,14 +10,10 @@
 # $5: Signing key fingerprint
 # $6: temp directory
 
-bdir="$1"
-cdir="$6"
-sdir="$3"
+7z a "$6/$2.7z" -m0=lzma2 "$1"
 
-7z a "$cdir/$2.7z" -m0=lzma2 "$bdir"
+gpg -v -o "$3/$2.7z.gpg" --cipher-algo AES256 --sign-with "$5" -r "$4" --sign --encrypt "$6/$2.7z"
 
-gpg -v -o "$sdir/$2.7z.gpg" --cipher-algo AES256 --sign-with "$5" -r "$4" --sign --encrypt "$cdir/$2.7z"
-
-rm "$cdir/$2.7z"
+rm "$6/$2.7z"
 
 exit
